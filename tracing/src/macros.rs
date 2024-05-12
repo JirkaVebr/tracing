@@ -83,9 +83,6 @@ macro_rules! span {
             }
         }
     };
-    (target: $target:expr, parent: $parent:expr, $lvl:expr, $name:expr) => {
-        $crate::span!(target: $target, parent: $parent, $lvl, $name,)
-    };
     (parent: $parent:expr, $lvl:expr, $name:expr, $($fields:tt)*) => {
         $crate::span!(
             target: module_path!(),
@@ -101,14 +98,6 @@ macro_rules! span {
             parent: $parent,
             $lvl,
             $name,
-        )
-    };
-    (target: $target:expr, $lvl:expr, $name:expr, $($fields:tt)*) => {
-        $crate::span!(
-            target: $target,
-            $lvl,
-            $name,
-            $($fields)*
         )
     };
     (target: $target:expr, $lvl:expr, $name:expr) => {
